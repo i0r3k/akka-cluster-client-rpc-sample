@@ -25,7 +25,6 @@ public class Main {
 
         ActorSystem system = ActorSystem.create("ClusterSystem", config);
 
-        // Server 加入发布的服务
         Map<String, Object> beans = new HashMap<>();
         beans.put(ExampleInterface.class.getName(), new ExampleInterfaceImpl());
 
