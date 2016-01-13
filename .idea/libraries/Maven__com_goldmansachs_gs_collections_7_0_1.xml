@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: com.goldmansachs:gs-collections:7.0.1">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/goldmansachs/gs-collections/7.0.1/gs-collections-7.0.1.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/com/goldmansachs/gs-collections/7.0.1/gs-collections-7.0.1-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/goldmansachs/gs-collections/7.0.1/gs-collections-7.0.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
