@@ -19,7 +19,7 @@ import java.util.Map;
 public class Main {
     public static void main(String[] args) {
         final Config config = ConfigFactory
-                .parseString("akka.remote.netty.tcp.port=" + 12551)
+                .parseString("akka.remote.netty.tcp.port=" + args[0])
                 .withFallback(ConfigFactory.parseString("akka.cluster.roles = [RpcServer]"))
                 .withFallback(ConfigFactory.load("server"));
 

@@ -30,7 +30,7 @@ public final class RpcClient {
 
     private RpcClient() {
         final Config config = ConfigFactory
-                .parseString("akka.remote.netty.tcp.port=" + 12552)
+                .parseString("akka.remote.netty.tcp.port=" + 2552)
                 .withFallback(ConfigFactory.load("client"));
         system = ActorSystem.create("ClusterClientSystem", config);
 
