@@ -2,10 +2,8 @@ package io.iorek.akka.sample.cluster.rpc.server;
 
 import akka.actor.UntypedActor;
 import io.iorek.akka.sample.cluster.rpc.RpcCallMethod;
+import org.apache.commons.lang3.reflect.MethodUtils;
 
-import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -23,17 +21,10 @@ public class RpcServerActor extends UntypedActor {
         if (message instanceof RpcCallMethod) {
             RpcCallMethod event = (RpcCallMethod) message;
             Object bean = proxyBeans.get(event.getBeanName());
+            String methodName = event.getMethodName();
             Object[] params = event.getParams();
-            List<Class<?>> paraTypes = new ArrayList<Class<?>>();
-            Class<?>[] paramerTypes = new Class<?>[] {};
-            if (params != null) {
-                for (Object param : params) {
-                    paraTypes.add(param.getClass());
-                }
-            }
-            Method method = bean.getClass().getMethod(event.getMethodName(),
-                    paraTypes.toArray(paramerTypes));
-            Object o = method.invoke(bean, params);
+
+            Object o = MethodUtils.invokeMethod(bean, methodName, params);
             getSender().tell(o, getSelf());
         }
     }
