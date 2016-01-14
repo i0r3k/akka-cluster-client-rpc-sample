@@ -40,14 +40,7 @@ public final class RpcClient {
 
     private Set<ActorPath> initialContacts(Config config) {
         MutableList<String> initialContactList = FastList.newList(config.getStringList("akka.cluster.client.initial-contacts"));
-        return Set<ActorSelection> initialContacts = initialContactList.collect(new Function<String, ActorSelection>() {
-            private static final long serialVersionUID = 1L;
-
-            @Override
-            public ActorSelection valueOf(String initialContact) {
-                return system.actorSelection(initialContact);
-            }
-        }).toSet();
+        return Set<ActorSelection> initialContacts = initialContactList.collect(initialContact -> system.actorSelection(initialContact);).toSet();
     }
 
     public static final RpcClient getInstance() {
