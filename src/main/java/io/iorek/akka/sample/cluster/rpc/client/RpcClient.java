@@ -7,6 +7,8 @@ import akka.actor.Props;
 import akka.cluster.client.ClusterClient;
 import akka.cluster.client.ClusterClientSettings;
 import akka.routing.FromConfig;
+import com.gs.collections.api.list.MutableList;
+import com.gs.collections.impl.list.mutable.FastList;
 import com.typesafe.config.Config;
 import com.typesafe.config.ConfigFactory;
 import io.iorek.akka.sample.cluster.rpc.RpcBeanProxy;
@@ -40,7 +42,7 @@ public final class RpcClient {
 
     private Set<ActorPath> initialContacts(Config config) {
         MutableList<String> initialContactList = FastList.newList(config.getStringList("akka.cluster.client.initial-contacts"));
-        return Set<ActorSelection> initialContacts = initialContactList.collect(initialContact -> system.actorSelection(initialContact);).toSet();
+        return initialContactList.collect(initialContact -> system.actorSelection(initialContact).anchorPath()).toSet();
     }
 
     public static final RpcClient getInstance() {
